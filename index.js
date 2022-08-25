@@ -76,7 +76,7 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Application running on port: ${port}`);
     //https://b7d8-217-75-204-146.ngrok.io/viber/webhook
-    bot.setWebhook(`https://chatapi.viber.com/pa/set_webhook`).catch(error => {
+    bot.setWebhook(`https://haris-viber-bot.herokuapp.com/viber/webhook`).catch(error => {
         console.log('Can not set webhook on following server. Is it running?');
         console.error(error);
         process.exit(1);

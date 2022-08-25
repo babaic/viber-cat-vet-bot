@@ -46,12 +46,12 @@ bot.on(BotEvents.UNSUBSCRIBED, response => {
 });
 bot.on(BotEvents.MESSAGE_RECEIVED, async (message, response) => {
 
-    await fetch(`http://localhost:45427/api/viber/checksecretkey?secretKey=${message.text}`)
+    await fetch(`https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`)
     .then(res => res.json())
     .then(text => {
         console.log(response.userProfile.name);
         if(text == true) {
-            fetch(`http://localhost:45427/api/viber/senduserprofile/${message.text}`, {
+            fetch(`https://covid-api.ezoblak.ba/api/viber/senduserprofile/${message.text}`, {
                 method: 'POST',
                 body: JSON.stringify(response.userProfile),
                 headers: { 'Content-Type': 'application/json'}

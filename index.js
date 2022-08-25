@@ -134,6 +134,37 @@ router.post('/nekaporuka', (req,res) => {
     return res.json({"message": "proslo"});
 })
 
+router.post('/nekaporukaTest', (req,res) => {
+    var userProfiles = [
+        {
+            id: 'op6+H3RgVQTiKBCuJZEn4g==',
+            name: 'ʜaʀɪs',
+            avatar: 'https://media-direct.cdn.viber.com/download_photo?dlid=M0nwK7nmp9QnVrFP7MaRlnOdWqygu2v9Gi_HSIKXcu_g2jnqvCLzTAs2dD-hwYruVaq9PfhTQVSsBG5eJb9wEnHl6VHQlTepHJI31wE8XqrB14k-BuixIE1bM6w69x-GKkxYxQ&fltp=jpg&imsz=0000',      country: 'BA',
+            language: 'en-US',
+            apiVersion: 10
+          },
+          {
+            id: 'qK8k4xk4CPwUX1Etwu7WfA==',
+            name: 'Tarik',
+            avatar: '',
+            country: 'BA',
+            language: 'en-US',
+            apiVersion: 10
+          },
+          {
+            id: '+AjjBFIVE6ktqtemYOIrzg==',
+            name: 'Tarik Krivosija',
+            avatar: 'https://media-direct.cdn.viber.com/download_photo?dlid=M0nwK7nmp9QnVrFP7MaRlnOdXqymvjf4FS-ST4HAcr7tj2rjvCz5HAszf2PwlorgAPmyPa1dQFfxUj9bIetxFSez4gLYlTGuE5Fm1gllCKXF09w5YZXLvHxZ0q5KeOsjL8W-Mg&fltp=jpg&imsz=0000',
+            country: 'BA',
+            language: 'en-US',
+            apiVersion: 10
+          }
+    ];
+
+    bot.sendMessage(userProfiles[0], new TextMessage("aaa"));
+
+})
+
 app.use("/api/viber", router);
 
 const TextMessage1 = require('viber-bot').Message.Text;

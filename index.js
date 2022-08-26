@@ -1,3 +1,4 @@
+require('https').globalAgent.options.ca = require('ssl-root-cas/latest').create();
 const ViberBot = require('viber-bot').Bot,
 BotEvents = require('viber-bot').Events,
 TextMessage = require('viber-bot').Message.Text
@@ -5,6 +6,7 @@ const bodyParser = require('body-parser')
 express = require('express');
 const fetch = require('node-fetch');
 const app = express();
+
 
 const bot = new ViberBot({
     authToken: '4fb15627d4a7e6b9-6705f13fbe2685f0-5a819b1f97ae7e1e',

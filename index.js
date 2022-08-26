@@ -47,7 +47,7 @@ bot.on(BotEvents.UNSUBSCRIBED, response => {
     //response.send(new TextMessage(`Hi there ${response.userProfile.name}. I am ${bot.name}! Feel free to ask me anything.`));
 });
 bot.on(BotEvents.MESSAGE_RECEIVED, async (message, response) => {
-    require('https').globalAgent.options.ca = require('ssl-root-cas/latest').create();
+    require('https').globalAgent.options.ca = require('ssl-root-cas').create();
     await fetch(`https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`)
     .then(res => res.json())
     .then(text => {

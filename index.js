@@ -1,4 +1,3 @@
-require('https').globalAgent.options.ca = require('ssl-root-cas/latest').create();
 const ViberBot = require('viber-bot').Bot,
 BotEvents = require('viber-bot').Events,
 TextMessage = require('viber-bot').Message.Text

@@ -8,6 +8,9 @@ const app = express();
 require('dotenv').config();
 require('ssl-root-cas').inject();
 
+import * as https from 'https'
+https.globalAgent.options.rejectUnauthorized = false
+
 
 const bot = new ViberBot({
     authToken: '4fb15627d4a7e6b9-6705f13fbe2685f0-5a819b1f97ae7e1e',

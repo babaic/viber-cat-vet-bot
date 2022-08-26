@@ -8,6 +8,8 @@ const app = express();
 require('dotenv').config();
 
 
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+
 const bot = new ViberBot({
     authToken: '4fb15627d4a7e6b9-6705f13fbe2685f0-5a819b1f97ae7e1e',
     name: "Cat Vet Bot",
@@ -47,7 +49,6 @@ bot.on(BotEvents.UNSUBSCRIBED, response => {
     //response.send(new TextMessage(`Hi there ${response.userProfile.name}. I am ${bot.name}! Feel free to ask me anything.`));
 });
 bot.on(BotEvents.MESSAGE_RECEIVED, async (message, response) => {
-    require('https').globalAgent.options.ca = require('ssl-root-cas').create();
     await fetch(`https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`)
     .then(res => res.json())
     .then(text => {

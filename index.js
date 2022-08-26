@@ -5,6 +5,8 @@ const bodyParser = require('body-parser')
 express = require('express');
 const fetch = require('node-fetch');
 const app = express();
+require('dotenv').config();
+require('ssl-root-cas').inject();
 
 
 const bot = new ViberBot({

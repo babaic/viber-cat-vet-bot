@@ -6,10 +6,6 @@ express = require('express');
 const fetch = require('node-fetch');
 const app = express();
 require('dotenv').config();
-require('ssl-root-cas').inject();
-
-import * as https from 'https'
-https.globalAgent.options.rejectUnauthorized = false
 
 
 const bot = new ViberBot({
@@ -51,7 +47,7 @@ bot.on(BotEvents.UNSUBSCRIBED, response => {
     //response.send(new TextMessage(`Hi there ${response.userProfile.name}. I am ${bot.name}! Feel free to ask me anything.`));
 });
 bot.on(BotEvents.MESSAGE_RECEIVED, async (message, response) => {
-
+    require('https').globalAgent.options.ca = require('ssl-root-cas/latest').create();
     await fetch(`https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`)
     .then(res => res.json())
     .then(text => {

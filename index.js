@@ -12,7 +12,7 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
 const bot = new ViberBot({
     authToken: '4fb15627d4a7e6b9-6705f13fbe2685f0-5a819b1f97ae7e1e',
-    name: "Cat Vet Bot",
+    name: "eMI",
     avatar: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Katze_weiss.png"
 });
 
@@ -41,7 +41,7 @@ const allowedUsers = ['ostfoVjsiFlO5LURW+fCwg=='];
 bot.on(BotEvents.SUBSCRIBED, response => {
     console.log('SUBSCRIBE EVENT ');
     console.log({response});
-    //response.send(new TextMessage(`Hi there ${response.userProfile.name}. I am ${bot.name}! Feel free to ask me anything.`));
+    response.send(new TextMessage(`Pozdrav ${response.userProfile.name}. Dobrodošli na eMI izvještajnu platformu. Molimo Vas da unesete kod.`));
 });
 bot.on(BotEvents.UNSUBSCRIBED, response => {
     console.log('UNSUBSCRIBE EVENT ');

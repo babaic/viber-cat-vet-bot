@@ -13,7 +13,7 @@ process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 const bot = new ViberBot({
     authToken: '4fb15627d4a7e6b9-6705f13fbe2685f0-5a819b1f97ae7e1e',
     name: "eMI",
-    avatar: "https://upload.wikimedia.org/wikipedia/commons/3/3d/Katze_weiss.png"
+    avatar: "https://i.imgur.com/GrZgxVl.png"
 });
 
 app.use("/viber/webhook", bot.middleware());
@@ -49,6 +49,20 @@ bot.on(BotEvents.UNSUBSCRIBED, response => {
     //response.send(new TextMessage(`Hi there ${response.userProfile.name}. I am ${bot.name}! Feel free to ask me anything.`));
 });
 bot.on(BotEvents.MESSAGE_RECEIVED, async (message, response) => {
+    // let msg = message.text.substring(0, 2);
+    // let url;
+    // if(msg == 'SA') {
+    //     url = `https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`;
+    // }
+    // else if(msg == 'TZ') {
+    //     //tuzlanski
+    //     url = `https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`;
+    // }
+    // else {
+    //     bot.sendMessage(response.userProfile, new TextMessage("Došlo je do greške"));
+    //     return; 
+    // }
+
     await fetch(`https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`)
     .then(res => res.json())
     .then(text => {

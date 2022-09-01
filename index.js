@@ -49,19 +49,19 @@ bot.on(BotEvents.UNSUBSCRIBED, response => {
     //response.send(new TextMessage(`Hi there ${response.userProfile.name}. I am ${bot.name}! Feel free to ask me anything.`));
 });
 bot.on(BotEvents.MESSAGE_RECEIVED, async (message, response) => {
-    // let msg = message.text.substring(0, 2);
-    // let url;
-    // if(msg == 'SA') {
-    //     url = `https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`;
-    // }
-    // else if(msg == 'TZ') {
-    //     //tuzlanski
-    //     url = `https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`;
-    // }
-    // else {
-    //     bot.sendMessage(response.userProfile, new TextMessage("Došlo je do greške"));
-    //     return; 
-    // }
+    let msg = message.text.substring(0, 2);
+    let url;
+    if(msg == 'SA') {
+        url = `https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`;
+    }
+    else if(msg == 'TZ') {
+        //tuzlanski
+        url = `https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`;
+    }
+    else {
+        bot.sendMessage(response.userProfile, new TextMessage("Došlo je do greške"));
+        return; 
+    }
 
     await fetch(`https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`)
     .then(res => res.json())
@@ -138,6 +138,9 @@ router.post('/nekaporuka', (req,res) => {
     //req.body.poruka.forEach((poruka) => console.log(poruka));
 
     var userProfile = req.body;
+    if(userProfile.message.includes("TK_")) {
+        userProfile.message = userProfile.message.replace("https://covid-api.ezoblak.ba/api/viber/getIzvjestaj?hash=","https://emi-api.zzotk.ba/api/viber/getIzvjestaj?hash=");
+    }
     bot.sendMessage(userProfile, new TextMessage(userProfile.message));
 
     //userProfiles.forEach((userProfile) => bot.sendMessage(userProfile, new TextMessage("ovo je test poruka")));

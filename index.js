@@ -63,7 +63,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, async (message, response) => {
         return; 
     }
 
-    await fetch(`https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`)
+    await fetch(url)
     .then(res => res.json())
     .then(text => {
         console.log(response.userProfile.name);

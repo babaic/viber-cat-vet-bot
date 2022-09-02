@@ -66,7 +66,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, async (message, response) => {
         return; 
     }
 
-    await fetch(apiUrl)
+    await fetch(url)
     .then(res => res.json())
     .then(text => {
         console.log(response.userProfile.name);

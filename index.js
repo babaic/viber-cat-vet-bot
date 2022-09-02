@@ -50,25 +50,28 @@ bot.on(BotEvents.UNSUBSCRIBED, response => {
 });
 bot.on(BotEvents.MESSAGE_RECEIVED, async (message, response) => {
     let msg = message.text.substring(0, 2);
-    let url;
+    let apiUrl;
+    var url;
     if(msg == 'SA') {
-        url = `https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`;
+        apiUrl = 'https://covid-api.ezoblak.ba/api/viber/';
+        url = `${apiUrl}checksecretkey?secretKey=${message.text}`;
     }
     else if(msg == 'TZ') {
         //tuzlanski
-        url = `https://emi-api.zzotk.ba/api/viber/checksecretkey?secretKey=${message.text}`;
+        apiUrl = `https://emi-api.zzotk.ba/api/viber/`;
+        url = `${apiUrl}checksecretkey?secretKey=${message.text}`
     }
     else {
         bot.sendMessage(response.userProfile, new TextMessage("Došlo je do greške"));
         return; 
     }
 
-    await fetch(url)
+    await fetch(apiUrl)
     .then(res => res.json())
     .then(text => {
         console.log(response.userProfile.name);
         if(text == true) {
-            fetch(`https://covid-api.ezoblak.ba/api/viber/senduserprofile/${message.text}`, {
+            fetch(`${apiUrl}senduserprofile/${message.text}`, {
                 method: 'POST',
                 body: JSON.stringify(response.userProfile),
                 headers: { 'Content-Type': 'application/json'}

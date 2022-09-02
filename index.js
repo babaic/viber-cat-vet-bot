@@ -56,14 +56,14 @@ bot.on(BotEvents.MESSAGE_RECEIVED, async (message, response) => {
     }
     else if(msg == 'TZ') {
         //tuzlanski
-        url = `https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`;
+        url = `https://emi-api.zzotk.ba/api/viber/checksecretkey?secretKey=${message.text}`;
     }
     else {
         bot.sendMessage(response.userProfile, new TextMessage("Došlo je do greške"));
         return; 
     }
 
-    await fetch(`https://covid-api.ezoblak.ba/api/viber/checksecretkey?secretKey=${message.text}`)
+    await fetch(url)
     .then(res => res.json())
     .then(text => {
         console.log(response.userProfile.name);

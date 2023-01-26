@@ -91,7 +91,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, async (message, response) => {
 bot.onConversationStarted((userProfile, isSubscribed, context, onFinish) =>
 	onFinish(new TextMessage(`Pozdrav, molimo unesite Vas aktivacijski kljuc`)));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 10000;
 // app.use("/viber/webhook", bot.middleware());
 app.listen(port, () => {
     console.log(`Application running on port: ${port}`);

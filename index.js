@@ -8,7 +8,7 @@ const app = express();
 require('dotenv').config();
 
 
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '1';
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
 
 const bot = new ViberBot({
     authToken: '4fb15627d4a7e6b9-6705f13fbe2685f0-5a819b1f97ae7e1e',
@@ -96,7 +96,7 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Application running on port: ${port}`);
     //https://b7d8-217-75-204-146.ngrok.io/viber/webhook
-    bot.setWebhook(`https://viber-service.onrender.com/viber/webhook`).catch(error => {
+    bot.setWebhook(`https://viber-bot.onrender.com/viber/webhook`).catch(error => {
         console.log('Can not set webhook on following server. Is it running?');
         console.error(error);
         process.exit(1);
@@ -105,6 +105,10 @@ app.listen(port, () => {
 
 router.post('/test', (req, res) => {
     return res.json({"message": "test poruka"}); 
+})
+
+app.get('/', (req, res) => {
+    res.sendStatus(200)
 })
 
 router.post('/nekaporuka', (req,res) => {

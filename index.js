@@ -8,7 +8,7 @@ const app = express();
 require('dotenv').config();
 
 
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '1';
 
 const bot = new ViberBot({
     authToken: '4fb15627d4a7e6b9-6705f13fbe2685f0-5a819b1f97ae7e1e',
@@ -91,7 +91,7 @@ bot.on(BotEvents.MESSAGE_RECEIVED, async (message, response) => {
 bot.onConversationStarted((userProfile, isSubscribed, context, onFinish) =>
 	onFinish(new TextMessage(`Pozdrav, molimo unesite Vas aktivacijski kljuc`)));
 
-const port = process.env.PORT || 10000;
+const port = process.env.PORT || 3000;
 // app.use("/viber/webhook", bot.middleware());
 app.listen(port, () => {
     console.log(`Application running on port: ${port}`);

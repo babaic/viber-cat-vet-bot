@@ -210,6 +210,6 @@ var userProfile = {
     bot.setWebhook(`https://viber-bot.onrender.com/viber/webhook`).catch(error => {
         console.log('Can not set webhook on following server. Is it running?');
         console.error(error);
-        process.exit(1);
+        //process.exit(1);
     });
 });

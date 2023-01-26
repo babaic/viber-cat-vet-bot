@@ -91,17 +91,9 @@ bot.on(BotEvents.MESSAGE_RECEIVED, async (message, response) => {
 bot.onConversationStarted((userProfile, isSubscribed, context, onFinish) =>
 	onFinish(new TextMessage(`Pozdrav, molimo unesite Vas aktivacijski kljuc`)));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 10000;
 // app.use("/viber/webhook", bot.middleware());
-app.listen(port, () => {
-    console.log(`Application running on port: ${port}`);
-    //https://b7d8-217-75-204-146.ngrok.io/viber/webhook
-    bot.setWebhook(`https://viber-bot.onrender.com/viber/webhook`).catch(error => {
-        console.log('Can not set webhook on following server. Is it running?');
-        console.error(error);
-        process.exit(1);
-    });
-});
+
 
 router.post('/test', (req, res) => {
     return res.json({"message": "test poruka"}); 
@@ -208,4 +200,16 @@ var userProfile = {
   }
 
 
+
   bot.onSubscribe(response => console.log(`Subscribed: ${response.userProfile}`));
+
+
+  app.listen(port, () => {
+    console.log(`Application running on port: ${port}`);
+    //https://b7d8-217-75-204-146.ngrok.io/viber/webhook
+    bot.setWebhook(`https://viber-bot.onrender.com/viber/webhook`).catch(error => {
+        console.log('Can not set webhook on following server. Is it running?');
+        console.error(error);
+        process.exit(1);
+    });
+});
